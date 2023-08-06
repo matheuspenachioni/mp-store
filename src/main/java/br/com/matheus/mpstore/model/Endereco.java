@@ -42,6 +42,7 @@ public class Endereco  implements Serializable {
 	private Pessoa pessoa;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
 	private TipoEndereco tipoEndereco;
 
 	//...Getters and Setters

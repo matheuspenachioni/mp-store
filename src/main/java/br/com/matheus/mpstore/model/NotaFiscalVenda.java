@@ -2,17 +2,7 @@ package br.com.matheus.mpstore.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.ConstraintMode;
-import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "nota_fiscal_venda")
@@ -24,16 +14,19 @@ public class NotaFiscalVenda implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_nota_fiscal_venda")
 	private Long id;
 
+	@Column(nullable = false)
 	private String numero;
-	
+
+	@Column(nullable = false)
 	private String serie;
-	
+
+	@Column(nullable = false)
 	private String tipo;
 	
-	@Column(columnDefinition = "text")
+	@Column(columnDefinition = "text", nullable = false)
 	private String xml;
 
-	@Column(columnDefinition = "text")
+	@Column(columnDefinition = "text", nullable = false)
 	private String pdf;
 
 	@OneToOne(targetEntity = VendaCompraLoja.class)

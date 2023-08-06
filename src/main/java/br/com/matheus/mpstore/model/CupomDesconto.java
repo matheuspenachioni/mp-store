@@ -5,14 +5,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "cupom_desconto")
@@ -24,6 +17,7 @@ public class CupomDesconto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_cupom_desconto")
 	private Long id;
 
+	@Column(nullable = false)
 	private String codigoCupom;
 	
 	private BigDecimal valorReal;
@@ -31,6 +25,7 @@ public class CupomDesconto implements Serializable {
 	private BigDecimal valorPorcentagem;
 	
 	@Temporal(TemporalType.DATE)
+	@Column(nullable = false)
 	private Date dtValidade;
 	
 	//...Getters and Setters

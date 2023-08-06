@@ -5,19 +5,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
-import javax.persistence.ConstraintMode;
-import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "venda_compra_loja")
@@ -28,23 +16,28 @@ public class VendaCompraLoja implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_venda_compra_loja")
 	private Long id;
-	
+
+	@Column(nullable = false)
 	private BigDecimal valorTotal;
 	
 	private BigDecimal valorDesconto;
-	
+
+	@Column(nullable = false)
 	private BigDecimal valorFrete;
 	
 	@Temporal(TemporalType.DATE)
+	@Column(nullable = false)
 	private Date dataVenda;
 	
 	@Temporal(TemporalType.DATE)
+	@Column(nullable = false)
 	private Date dataEntrega;
-	
+
+	@Column(nullable = false)
 	private Integer diasEntrega;
 	
 	@ManyToOne(targetEntity = CupomDesconto.class)
-	@JoinColumn(name = "cupom_desconto_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "cupom_desconto_fk"))
+	@JoinColumn(name = "cupom_desconto_id", foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "cupom_desconto_fk"))
 	private CupomDesconto cupomDesconto;
 	
 	@ManyToOne(targetEntity = FormaPagamento.class)

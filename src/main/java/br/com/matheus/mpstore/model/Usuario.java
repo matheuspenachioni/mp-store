@@ -16,12 +16,15 @@ public class Usuario implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_usuario")
 	private Long id;
-	
+
+	@Column(nullable = false)
 	private String login;
-	
+
+	@Column(nullable = false)
 	private String senha;
 	
 	@Temporal(TemporalType.DATE)
+	@Column(nullable = false)
 	private Date dataAtualSenha;
 	
 	@OneToMany(fetch = FetchType.LAZY)
@@ -29,6 +32,10 @@ public class Usuario implements UserDetails {
 	joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id", table = "usuario", unique = false, foreignKey = @ForeignKey(name = "usuario_fk", value = ConstraintMode.CONSTRAINT)),
 	inverseJoinColumns = @JoinColumn(name = "acesso_id", referencedColumnName = "id", table = "acesso", unique = false, foreignKey = @ForeignKey(name = "usuario_fk", value = ConstraintMode.CONSTRAINT)))
 	private List<Acesso> acessos;
+	
+	@ManyToOne(targetEntity = Pessoa.class)
+	@JoinColumn(name = "pessoa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_fk"))
+	private Pessoa pessoa;
 	
 	//...UserDetails methods
 
@@ -65,6 +72,15 @@ public class Usuario implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return true;
+	}
+	
+	//...Getter and Setters
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+	
+	public Pessoa getPessoa() {
+		return pessoa;
 	}
 	
 }

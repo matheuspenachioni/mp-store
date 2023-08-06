@@ -4,13 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "produto")
@@ -22,29 +16,38 @@ public class Produto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_produto")
 	private Long id;
 
+	@Column(nullable = false)
 	private String tipoUnidade;
-	
+
+	@Column(nullable = false)
 	private String nome;
 	
-	@Column(columnDefinition = "text")
+	@Column(columnDefinition = "text", nullable = false)
 	private String descricao;
-	
+
+	@Column(nullable = false)
 	private Double peso;
-	
+
+	@Column(nullable = false)
 	private Double largura;
-	
+
+	@Column(nullable = false)
 	private Double altura;
-	
+
+	@Column(nullable = false)
 	private Double profundidade;
-	
+
+	@Column(nullable = false)
 	private BigDecimal valorVenda = BigDecimal.ZERO;
-	
+
+	@Column(nullable = false)
 	private Integer qtdEstoque = 0;
 	
 	private Integer qtdAlertaEstoque = 0;
 	
 	private String linkYoutube;
-	
+
+	@Column(nullable = false)
 	private Boolean ativo = Boolean.TRUE;
 	
 	private Boolean alertaQtdEstoque = Boolean.FALSE;

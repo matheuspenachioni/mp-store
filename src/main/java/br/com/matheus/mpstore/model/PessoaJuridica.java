@@ -1,9 +1,6 @@
 package br.com.matheus.mpstore.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.validator.constraints.br.CNPJ;
 
@@ -20,7 +17,6 @@ public class PessoaJuridica extends Pessoa {
 	@Column(nullable = false)
 	private String inscEstadual;
 	
-	@Column(nullable = false)
 	private String inscMunicipal;
 	
 	@Column(nullable = false)
@@ -29,7 +25,6 @@ public class PessoaJuridica extends Pessoa {
 	@Column(nullable = false)
 	private String razaoSocial;
 	
-	@Column(nullable = false)
 	private String categoria;
 
 	//...Getters and Setters

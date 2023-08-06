@@ -22,14 +22,17 @@ public class ContaReceber implements Serializable {
 	private String descricao;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
 	private StatusContaReceber status;
-	
+
+	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date dtVencimento;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dtPagamento;
-	
+
+	@Column(nullable = false)
 	private BigDecimal valorTotal;
 	
 	private BigDecimal valorDesconto;
